@@ -10,10 +10,10 @@ export function computeSimulationMetrics(state: FinancialState): SimulationMetri
   const currentBalance = Number.isFinite(state.currentBalance) ? state.currentBalance : 0;
   const fixedCommitments = Number.isFinite(state.fixedCommitments) ? Math.max(0, state.fixedCommitments) : 0;
   const savingsGoal = Number.isFinite(state.savingsGoal) ? Math.max(0, state.savingsGoal) : 1500;
-  const cycleDays = state.cycleDays === 31 ? 31 : 30;
+  const cycleDays = 30;
 
-  // 1. Days Remaining (selectedCycleDays - currentDay + 1, min 1, strictly finite)
-  const rawDaysRemaining = cycleDays - currentDay + 1;
+  // 1. Days Remaining (strictly Math.max(1, 30 - currentDay))
+  const rawDaysRemaining = 30 - currentDay;
   const daysRemaining = Math.max(1, Number.isFinite(rawDaysRemaining) ? rawDaysRemaining : 1);
 
   // 2. Discretionary Safe Pool
@@ -31,11 +31,11 @@ export function computeSimulationMetrics(state: FinancialState): SimulationMetri
   const dailyBurnRate = currentDay > 1 
     ? (Number.isFinite(totalSpentSoFar) ? totalSpentSoFar : 0) / (safeCurrentDay - 1) 
     : 0;
-  const idealDailyBurnRate = Math.max(1, totalBudget / cycleDays);
+  const idealDailyBurnRate = Math.max(1, totalBudget / 30);
 
   // Ideal baseline daily discretionary
   const totalInitialDiscretionary = Math.max(1, totalBudget - fixedCommitments - savingsGoal);
-  const idealDailyDiscretionary = Math.max(1, totalInitialDiscretionary / cycleDays);
+  const idealDailyDiscretionary = Math.max(1, totalInitialDiscretionary / 30);
 
   // 5. Dynamic Health Score (0 - 1000)
   // Component A: Runway Pace (0 to 400 pts)

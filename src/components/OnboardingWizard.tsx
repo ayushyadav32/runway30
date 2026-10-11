@@ -45,8 +45,8 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({
   // 3-Step Wizard: 1 = Cycle & Budget, 2 = Fixed Bills, 3 = Savings Goal
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
 
-  // Step 1: Cycle Length & Budget
-  const [cycleDays, setCycleDays] = useState<30 | 31>(30);
+  // Step 1: Cycle Length & Budget (Strictly 30 Days)
+  const cycleDays = 30;
   const startingBudget = 10000;
 
   // Step 2: Custom Fixed Commitments & Subscriptions (STARTS WITH 0 / EMPTY LIST)
@@ -191,34 +191,16 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({
             {/* Month Cycle Selector */}
             <div className="space-y-3">
               <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 font-bold">
-                Select Month Length
+                Runway Timeline Cycle
               </label>
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  onClick={() => setCycleDays(30)}
-                  className={`p-4 rounded-2xl border text-center transition-all cursor-pointer ${
-                    cycleDays === 30
-                      ? 'bg-emerald-500/15 border-emerald-400/60 text-white shadow-[0_0_20px_rgba(0,245,155,0.15)] ring-1 ring-emerald-400/30'
-                      : 'bg-white/[0.02] border-white/[0.06] text-slate-400 hover:text-white hover:bg-white/[0.04]'
-                  }`}
-                >
-                  <div className="text-2xl font-display font-extrabold mb-1">30 Days</div>
-                  <div className="text-xs font-mono text-slate-400">Standard Month Timeline</div>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setCycleDays(31)}
-                  className={`p-4 rounded-2xl border text-center transition-all cursor-pointer ${
-                    cycleDays === 31
-                      ? 'bg-emerald-500/15 border-emerald-400/60 text-white shadow-[0_0_20px_rgba(0,245,155,0.15)] ring-1 ring-emerald-400/30'
-                      : 'bg-white/[0.02] border-white/[0.06] text-slate-400 hover:text-white hover:bg-white/[0.04]'
-                  }`}
-                >
-                  <div className="text-2xl font-display font-extrabold mb-1">31 Days</div>
-                  <div className="text-xs font-mono text-slate-400">Extended Month Timeline</div>
-                </button>
+              <div className="p-4 rounded-2xl border bg-emerald-500/15 border-emerald-400/60 text-white shadow-[0_0_20px_rgba(0,245,155,0.15)] ring-1 ring-emerald-400/30 flex items-center justify-between">
+                <div>
+                  <div className="text-2xl font-display font-extrabold mb-0.5">30 Days</div>
+                  <div className="text-xs font-mono text-slate-400">Strict Standard Month Runway Timeline</div>
+                </div>
+                <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-mono font-bold border border-emerald-500/30">
+                  Fixed 30-Day Engine
+                </span>
               </div>
             </div>
 

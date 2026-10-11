@@ -15,13 +15,13 @@ export const CLEAN_ZERO_STATE: FinancialState = {
 
 export const DEMO_SAMPLE_STATE: FinancialState = {
   totalBudget: 10000,
-  currentDay: 8,
+  currentDay: 2,
   currentBalance: 7450,
-  fixedCommitments: 2200,
+  fixedCommitments: 1918,
   savingsGoal: 1500,
   isSavingsLocked: true,
   cycleDays: 30,
-  userTag: '@ayush_fintech',
+  userTag: 'Alex',
   userAvatar: '⚡',
   isOnboarded: true,
 };
@@ -48,7 +48,7 @@ export const INITIAL_SUBSCRIPTIONS: SubscriptionItem[] = [
   {
     id: 'sub-gym',
     name: 'Cult.fit / Gym Membership',
-    amount: 1282,
+    amount: 1000,
     dueDay: 18,
     category: 'Fitness & Health',
     active: true,

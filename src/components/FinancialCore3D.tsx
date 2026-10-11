@@ -186,8 +186,8 @@ export const FinancialCore3D: React.FC<FinancialCore3DProps> = ({
     const innerCore = new THREE.Mesh(innerGeo, innerMat);
     coreGroup.add(innerCore);
 
-    // Starfield Particle Field (Orbiting ambient neon particles)
-    const particleCount = 260;
+    // Starfield Particle Field (Orbiting ambient neon particles - optimized to 80 for 60FPS)
+    const particleCount = 80;
     const particleGeo = new THREE.BufferGeometry();
     geometries.push(particleGeo);
     const positions = new Float32Array(particleCount * 3);
@@ -206,7 +206,7 @@ export const FinancialCore3D: React.FC<FinancialCore3DProps> = ({
 
     const particleMat = new THREE.PointsMaterial({
       color: secondaryColorTarget.current,
-      size: 0.052,
+      size: 0.055,
       transparent: true,
       opacity: 0.8,
       blending: THREE.AdditiveBlending,
@@ -267,7 +267,15 @@ export const FinancialCore3D: React.FC<FinancialCore3DProps> = ({
     observer.observe(container);
 
     const handleVisibilityChange = () => {
-      isTabActive = !document.hidden;
+      if (document.hidden) {
+        isTabActive = false;
+        cancelAnimationFrame(reqIdRef.current);
+      } else {
+        isTabActive = true;
+        lastTime = performance.now();
+        cancelAnimationFrame(reqIdRef.current);
+        reqIdRef.current = requestAnimationFrame(animate);
+      }
     };
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
