@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    background-color: #07090E;
+    color: #FFFFFF;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Luxury Obsidian frosted glass panels */
+.obsidian-card {
+  background-color: rgba(15, 23, 42, 0.70);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(30, 41, 59, 0.80);
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+}
+
+.obsidian-card-interactive {
+  background-color: rgba(15, 23, 42, 0.70);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(30, 41, 59, 0.80);
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.obsidian-card-interactive:hover {
+  border-color: rgba(51, 65, 85, 0.90);
+  background-color: rgba(30, 41, 59, 0.75);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  transform: translateY(-2px);
+}
+
+/* Subtle ambient radial gradients */
+.bg-obsidian-ambient {
+  background-image: 
+    radial-gradient(circle at 50% -10%, rgba(16, 185, 129, 0.07) 0%, transparent 50%),
+    radial-gradient(circle at 90% 40%, rgba(6, 182, 212, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 10% 70%, rgba(244, 63, 94, 0.04) 0%, transparent 40%);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #07090E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(51, 65, 85, 0.6);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.5);
+}
