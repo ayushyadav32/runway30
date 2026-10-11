@@ -79,6 +79,7 @@ export const CleanShockModal: React.FC<CleanShockModalProps> = ({
 
           <button
             onClick={onClose}
+            aria-label="Close Modal"
             className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />

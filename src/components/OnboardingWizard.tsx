@@ -355,6 +355,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({
                       <button
                         type="button"
                         onClick={() => handleRemoveBill(bill.id)}
+                        aria-label={`Remove bill ${bill.name}`}
                         className="p-1 text-slate-500 hover:text-rose-400 transition-colors cursor-pointer"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -427,6 +428,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({
 
               <input
                 type="range"
+                aria-label="Emergency Savings Goal Slider"
                 min="500"
                 max="2500"
                 step="100"

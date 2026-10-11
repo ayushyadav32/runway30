@@ -568,6 +568,7 @@ export default function App() {
             </div>
             <button
               onClick={() => setNotification(null)}
+              aria-label="Dismiss notification"
               className="p-1 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white cursor-pointer"
             >
               <X className="w-4 h-4" />
@@ -604,7 +605,7 @@ export default function App() {
                 <button
                   onClick={() => handleDayChange(currentDay - 1)}
                   disabled={currentDay <= 1}
-                  aria-label="Previous day"
+                  aria-label="Previous Day"
                   className="p-1 rounded-lg text-slate-400 hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
                 >
                   <ChevronLeft className="w-3.5 h-3.5" />
@@ -612,7 +613,7 @@ export default function App() {
                 <button
                   onClick={() => handleDayChange(currentDay + 1)}
                   disabled={currentDay >= totalDays}
-                  aria-label="Next day"
+                  aria-label="Next Day"
                   className="p-1 rounded-lg text-slate-400 hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
                 >
                   <ChevronRight className="w-3.5 h-3.5" />
@@ -623,7 +624,7 @@ export default function App() {
             <input
               type="range"
               data-testid="day-scrubber"
-              aria-label="Day Scrubber"
+              aria-label="Timeline Day Scrubber"
               min="1"
               max={totalDays}
               value={currentDay}
@@ -646,6 +647,7 @@ export default function App() {
             <button
               onClick={handleLogout}
               data-testid="logout-btn"
+              aria-label="Logout and switch identity"
               title="Logout and return to Financial ID Security Gate"
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono text-slate-400 hover:text-rose-300 hover:bg-rose-500/10 border border-slate-800 hover:border-rose-500/20 transition-all cursor-pointer"
             >
@@ -821,6 +823,7 @@ export default function App() {
                         <button
                           type="button"
                           onClick={() => handleToggleSubscription(sub.id)}
+                          aria-label={sub.active ? 'Pause Subscription' : 'Reactivate Subscription'}
                           className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold transition-all cursor-pointer ${
                             sub.active
                               ? 'bg-emerald-500/15 hover:bg-rose-500/20 text-emerald-300 hover:text-rose-300 border border-emerald-500/30 hover:border-rose-500/30'
@@ -834,6 +837,7 @@ export default function App() {
 
                         <button
                           onClick={() => handleDeleteSubscription(sub.id)}
+                          aria-label={`Delete subscription ${sub.name}`}
                           className="text-slate-500 hover:text-rose-400 p-1 rounded transition-colors cursor-pointer"
                           title="Delete"
                         >
@@ -1010,7 +1014,7 @@ export default function App() {
                 <input
                   type="range"
                   data-testid="simulator-slider"
-                  aria-label="What-If Simulator Slider"
+                  aria-label="Simulated Expense Amount"
                   min="100"
                   max="3500"
                   step="50"
@@ -1067,6 +1071,7 @@ export default function App() {
               <button
                 type="button"
                 data-testid="save-money-btn"
+                aria-label="Save simulated money"
                 onClick={handleSaveSimulatedSpend}
                 className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-800/80 hover:bg-emerald-500/10 border border-slate-700 hover:border-emerald-500/30 text-emerald-300 font-bold text-xs transition-all cursor-pointer"
               >
@@ -1077,6 +1082,7 @@ export default function App() {
               <button
                 type="button"
                 data-testid="commit-expense-btn"
+                aria-label="Commit simulated expense"
                 onClick={handleCommitSimulatedSpend}
                 className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs shadow-md shadow-cyan-600/30 transition-all cursor-pointer"
               >
@@ -1088,6 +1094,10 @@ export default function App() {
           {/* [+ Log an Expense Card] */}
           <motion.div
             whileHover={{ scale: 1.01 }}
+            role="button"
+            tabIndex={0}
+            aria-label="Add Expense"
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsExpenseModalOpen(true); }}
             onClick={() => setIsExpenseModalOpen(true)}
             className="rounded-2xl bg-slate-900/70 border border-slate-800/80 hover:border-emerald-500/40 backdrop-blur-xl p-6 sm:p-8 shadow-xl flex flex-col justify-between transition-all cursor-pointer group"
           >
@@ -1160,6 +1170,7 @@ export default function App() {
                 whileTap={{ scale: 0.97 }}
                 onClick={handleTriggerShock}
                 data-testid="life-shock-btn"
+                aria-label="Roll Life Shock stress test"
                 className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-black font-display font-black text-xs shadow-[0_0_25px_rgba(245,158,11,0.35)] transition-all cursor-pointer w-full sm:w-auto justify-center"
               >
                 <span className="text-base">🎲</span>
@@ -1231,6 +1242,7 @@ export default function App() {
 
                       <button
                         onClick={() => handleDeleteTransaction(tx.id)}
+                        aria-label={`Delete transaction ${tx.title}`}
                         className="opacity-0 group-hover:opacity-100 p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-all cursor-pointer"
                         title="Delete & Refund"
                       >
